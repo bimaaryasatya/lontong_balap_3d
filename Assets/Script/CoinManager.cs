@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using TMPro;
 
 public class CoinManager : MonoBehaviour
@@ -11,13 +10,19 @@ public class CoinManager : MonoBehaviour
     [Header("UI")]
     public TextMeshProUGUI coinText;
 
-    [Header("Level")]
-    public string nextSceneName = "Level2";
+    [Header("Level Complete")]
+    public GameObject levelCompletePanel;
+    public LevelCompleteManager levelCompleteManager;
 
     void Start()
     {
         totalCoin = GameObject.FindGameObjectsWithTag("Coin").Length;
         collectedCoin = 0;
+
+        if (levelCompletePanel != null)
+        {
+            levelCompletePanel.SetActive(false);
+        }
 
         UpdateCoinText();
 
@@ -34,8 +39,25 @@ public class CoinManager : MonoBehaviour
 
         if (collectedCoin >= totalCoin)
         {
-            SceneManager.LoadScene(nextSceneName);
+            CompleteAllCoins();
         }
+    }
+
+    void CompleteAllCoins()
+    {
+        Debug.Log("Semua coin terkumpul!");
+
+        if (levelCompleteManager != null)
+        {
+            levelCompleteManager.UnlockNextLevel();
+        }
+
+        if (levelCompletePanel != null)
+        {
+            levelCompletePanel.SetActive(true);
+        }
+
+        Time.timeScale = 0f;
     }
 
     void UpdateCoinText()

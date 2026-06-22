@@ -7,7 +7,7 @@ public class LevelCompleteManager : MonoBehaviour
     public int currentLevel = 1;
     public int maxLevel = 3;
 
-    public void CompleteLevel()
+    public void UnlockNextLevel()
     {
         int nextLevel = currentLevel + 1;
 
@@ -19,6 +19,15 @@ public class LevelCompleteManager : MonoBehaviour
             PlayerPrefs.Save();
         }
 
+        Debug.Log("Level terbaru terbuka: " + PlayerPrefs.GetInt("UnlockedLevel", 1));
+    }
+
+    public void ContinueToNextLevel()
+    {
+        Time.timeScale = 1f;
+
+        int nextLevel = currentLevel + 1;
+
         if (nextLevel <= maxLevel)
         {
             SceneManager.LoadScene("Level" + nextLevel);
@@ -27,5 +36,11 @@ public class LevelCompleteManager : MonoBehaviour
         {
             SceneManager.LoadScene("MainMenu");
         }
+    }
+
+    public void BackToMainMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
     }
 }
