@@ -3493,7 +3493,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelUIManager
   mainMenuScene: MainMenu
-  currentLevel: 1
+  currentLevel: 2
   pauseMenuPanel: {fileID: 50353083}
   settingsPanel: {fileID: 1917714869}
   volumeSlider: {fileID: 1675769153}
@@ -5126,7 +5126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e504b4ce5dc25844996a5780bad62a7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelCompleteManager
-  currentLevel: 1
+  currentLevel: 2
   maxLevel: 2
 --- !u!4 &938244977
 Transform:
