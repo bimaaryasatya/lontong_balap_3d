@@ -6,6 +6,7 @@ public class LevelUIManager : MonoBehaviour
 {
     [Header("Scene")]
     public string mainMenuScene = "MainMenu";
+    public int currentLevel = 1;
 
     [Header("UI Panels")]
     public GameObject pauseMenuPanel;
@@ -13,8 +14,6 @@ public class LevelUIManager : MonoBehaviour
 
     [Header("Settings")]
     public Slider volumeSlider;
-
-    private bool isPaused = false;
 
     private void Start()
     {
@@ -30,13 +29,15 @@ public class LevelUIManager : MonoBehaviour
         if (volumeSlider != null)
             volumeSlider.value = savedVolume;
 
+        // Simpan level terakhir yang sedang dimainkan untuk tombol Continue
+        PlayerPrefs.SetInt("LastPlayedLevel", currentLevel);
+        PlayerPrefs.Save();
+
         Time.timeScale = 1f;
     }
 
     public void OpenPauseMenu()
     {
-        isPaused = true;
-
         if (pauseMenuPanel != null)
             pauseMenuPanel.SetActive(true);
 
@@ -48,8 +49,6 @@ public class LevelUIManager : MonoBehaviour
 
     public void ResumeGame()
     {
-        isPaused = false;
-
         if (pauseMenuPanel != null)
             pauseMenuPanel.SetActive(false);
 
@@ -57,6 +56,15 @@ public class LevelUIManager : MonoBehaviour
             settingsPanel.SetActive(false);
 
         Time.timeScale = 1f;
+    }
+
+    public void SaveGame()
+    {
+        PlayerPrefs.SetInt("SavedLevel", currentLevel);
+        PlayerPrefs.SetInt("HasSaveGame", 1);
+        PlayerPrefs.Save();
+
+        Debug.Log("Game disimpan di Level " + currentLevel);
     }
 
     public void OpenSettings()
