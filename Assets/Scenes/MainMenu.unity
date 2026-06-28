@@ -1826,7 +1826,7 @@ MonoBehaviour:
   firstLevelScene: Level1
   settingsPanel: {fileID: 809854130}
   volumeSlider: {fileID: 1774570336}
-  continueButton: {fileID: 0}
+  continueButton: {fileID: 986334493}
 --- !u!4 &1067221763
 Transform:
   m_ObjectHideFlags: 0
@@ -2254,14 +2254,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.6392157}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 512eb9cc4cf1a14468087319e8e00b5c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 983e6517919f82e47a55e437327de82c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2800,7 +2800,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1961764181}
   - component: {fileID: 1961764180}
-  - component: {fileID: 1961764179}
+  - component: {fileID: 1961764182}
   m_Layer: 0
   m_Name: MusicManager
   m_TagString: Untagged
@@ -2808,18 +2808,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1961764179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1961764178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac5cb42bb47732e4f8b396c7ab55dcf0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BackgroundMusic
 --- !u!82 &1961764180
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2831,7 +2819,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 1eb5b3b4c6409c841993514c8f57bd04, type: 3}
+  m_Resource: {fileID: 8300000, guid: 4b234789f5f435f42a66f547e9536c47, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -2932,6 +2920,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1961764182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961764178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac5cb42bb47732e4f8b396c7ab55dcf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BackgroundMusic
 --- !u!1 &1974061850
 GameObject:
   m_ObjectHideFlags: 0

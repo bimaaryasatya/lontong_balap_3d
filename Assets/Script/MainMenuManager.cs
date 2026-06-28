@@ -18,12 +18,33 @@ public class MainMenuManager : MonoBehaviour
 
     private void Start()
     {
+        // PENGAMAN: Jika baru pertama kali atau data error, set ke 1f (volume penuh)
+        if (!PlayerPrefs.HasKey("Volume"))
+        {
+            PlayerPrefs.SetFloat("Volume", 1f);
+        }
+
         float savedVolume = PlayerPrefs.GetFloat("Volume", 1f);
+
+        // KOREKSI OTOMATIS: Jika slider kamu terkunci di kiri (0), baris ini akan memaksa reset ke kanan (1)
+        if (savedVolume <= 0.05f)
+        {
+            savedVolume = 1f;
+        }
+
         AudioListener.volume = savedVolume;
 
         if (volumeSlider != null)
         {
-            volumeSlider.value = savedVolume;
+            // Putus hubungan event dulu agar tidak memicu fungsi SetVolume(0) secara tidak sengaja saat awal play
+            volumeSlider.onValueChanged.RemoveAllListeners();
+
+            volumeSlider.minValue = 0f;
+            volumeSlider.maxValue = 1f;
+            volumeSlider.value = savedVolume; // Set nilai slider ke posisi aman
+
+            // Sambungkan kembali fungsi SetVolume ke slider secara aman lewat kode
+            volumeSlider.onValueChanged.AddListener(SetVolume);
         }
 
         if (settingsPanel != null)
@@ -44,7 +65,6 @@ public class MainMenuManager : MonoBehaviour
         PlayerPrefs.SetInt("UnlockedLevel", 1);
         PlayerPrefs.SetInt("LastPlayedLevel", 1);
 
-        // Reset semua data auto-save posisi & koin jika tekan New Game
         PlayerPrefs.SetInt("IsContinuousSave", 0);
         PlayerPrefs.SetInt("SavedCoins", 0);
         PlayerPrefs.DeleteKey("CollectedCoinsData");
@@ -64,7 +84,6 @@ public class MainMenuManager : MonoBehaviour
         int unlockedLevel = PlayerPrefs.GetInt("UnlockedLevel", 1);
         int targetLevel = lastPlayedLevel > 0 ? lastPlayedLevel : unlockedLevel;
 
-        // AKTIFKAN FITUR CONTINUE: Beri tahu CoinManager di level tujuan untuk memuat posisi terakhir
         PlayerPrefs.SetInt("IsContinuousSave", 1);
         PlayerPrefs.Save();
 
@@ -87,6 +106,7 @@ public class MainMenuManager : MonoBehaviour
         AudioListener.volume = volume;
         PlayerPrefs.SetFloat("Volume", volume);
         PlayerPrefs.Save();
+        Debug.Log("Volume diatur ke: " + volume);
     }
 
     public void QuitGame()
